@@ -21,7 +21,7 @@ class Author(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'song_count': len(self.songs)
+            'song_count': len(self.songs) # type: ignore
         }
 
 

@@ -1,9 +1,9 @@
 import json
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from dotenv import load_dotenv
 from models import db, Song, Author, LineAnalysis
 from gpt_service import GPTService
-from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions
 db.init_app(app)
-CORS(app, origins=["https://www.lyrix.app/"])
+CORS(app, origins=["https://www.lyrix.app/", "localhost:3000", "http://localhost:5173"])
 
 # Initialize GPT service
 gpt_service = GPTService()
@@ -79,6 +79,8 @@ def get_transcription(song_id):
 
         return jsonify(generated_analysis)
 
+    except (json.JSONDecodeError, TypeError) as e:
+        return jsonify({'error': str(e)}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
