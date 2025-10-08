@@ -6,7 +6,7 @@ from openai import OpenAI
 
 class GPTService:
     def __init__(self):
-        self.model = "gpt-4.1-nano-2025-04-14"
+        self.model = "gpt-5-nano-2025-08-07"  # Updated model name
         self.api_key = os.getenv("LYRIXOPENAIKEY")
 
         if not self.api_key:
