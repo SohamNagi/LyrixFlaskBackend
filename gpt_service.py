@@ -89,8 +89,6 @@ class GPTService:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,  # type: ignore
-                max_tokens=500,  # Increased for structured response
-                temperature=0.7
             )
             content = response.choices[0].message.content
             return content.strip() if content else ""
@@ -108,8 +106,6 @@ class GPTService:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=messages,  # type: ignore
-                max_tokens=150,  # Shorter for themes
-                temperature=0.5  # More focused responses
             )
             content = response.choices[0].message.content
             return content.strip() if content else ""
