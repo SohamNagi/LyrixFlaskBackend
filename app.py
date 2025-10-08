@@ -16,7 +16,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Initialize extensions
 db.init_app(app)
-CORS(app, origins=["https://www.lyrix.app/"])
+CORS(app, origins=["https://www.lyrix.app/", "localhost:3000", "http://localhost:5173"])
 
 # Initialize GPT service
 gpt_service = GPTService()
